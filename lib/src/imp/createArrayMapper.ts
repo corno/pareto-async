@@ -2,7 +2,7 @@ import * as api from "pareto-async-api"
 import { createCounter } from "./createCounter"
 
 export function createArrayMapper<T, NT>(
-    dictionary: api.IDictionary<T>,
+    array: T[],
     callback: (v: T) => api.IAsync<NT> | null
 ): api.IAsync<NT[]> {
     return {
@@ -10,7 +10,7 @@ export function createArrayMapper<T, NT>(
             const temp: NT[] = []
             createCounter(
                 (counter) => {
-                    dictionary.forEach((v) => {
+                    array.forEach((v) => {
                         counter.increment()
                         const tmp = callback(v)
 
