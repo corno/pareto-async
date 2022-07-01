@@ -6,19 +6,20 @@ export function createCounter(
     onEnd: () => void,
 ) {
     let counter = 0
-    let ended = false
+    let registrationsEnded = false
+    let onEndHasBeenCalled = false
     function wrapup() {
-        if (counter === 0) {
-            if (ended === true) {
+        if (registrationsEnded && counter === 0) {
+            if (onEndHasBeenCalled === true) {
                 throw new Error("already ended")
             }
-            ended = true
+            onEndHasBeenCalled = true
             onEnd()
         }
     }
     callback({
         increment: () => {
-            if (ended) {
+            if (onEndHasBeenCalled) {
                 throw new Error("async call done after context is ready")
             }
             counter += 1
@@ -29,5 +30,6 @@ export function createCounter(
             wrapup()
         },
     })
+    registrationsEnded = true
     wrapup()
 }
