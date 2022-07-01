@@ -1,4 +1,3 @@
-import * as pl from "pareto-lang-lib"
 import * as api from "pareto-async-api"
 
 
@@ -11,7 +10,7 @@ export function createCounter(
     function wrapup() {
         if (counter === 0) {
             if (ended === true) {
-                pl.logDebugMessage("already ended")
+                throw new Error("already ended")
             }
             ended = true
             onEnd()
@@ -20,7 +19,7 @@ export function createCounter(
     callback({
         increment: () => {
             if (ended) {
-                pl.logDebugMessage("async call done after context is ready")
+                throw new Error("async call done after context is ready")
             }
             counter += 1
 
