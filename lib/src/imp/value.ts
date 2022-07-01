@@ -1,7 +1,7 @@
 import * as api from "pareto-async-api"
 
 
-export function literal<T>(
+export function value<T>(
     v: T
 ): api.IAsync<T> {
     return {
