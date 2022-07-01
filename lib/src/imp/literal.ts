@@ -1,7 +1,7 @@
 import * as api from "pareto-async-api"
 
 
-export function createLeafSyncCaller<T>(
+export function literal<T>(
     v: T
 ): api.IAsync<T> {
     return {
