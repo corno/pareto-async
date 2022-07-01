@@ -6,10 +6,19 @@ export function createCounter(
     onEnd: () => void,
 ) {
     let counter = 0
-    let registrationsEnded = false
+
+    /*
+     * we need to keep track of if the registration phase is ended or not.
+     * it can happen that the counter reaches 0 during the registration phase, specifically if there is no real async call being made
+     * in that case the decrement counter is als called during the registration phase.
+     * If that happens there should not yet be a call to onEnd().
+     */
+    let registrationPhaseEnded = false
+
+
     let onEndHasBeenCalled = false
     function wrapup() {
-        if (registrationsEnded && counter === 0) {
+        if (registrationPhaseEnded && counter === 0) {
             if (onEndHasBeenCalled === true) {
                 throw new Error("already ended")
             }
@@ -30,6 +39,6 @@ export function createCounter(
             wrapup()
         },
     })
-    registrationsEnded = true
+    registrationPhaseEnded = true
     wrapup()
 }
