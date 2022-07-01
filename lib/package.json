@@ -24,6 +24,6 @@
     "url": "git+https://github.com/corno/pareto-async.git"
   },
   "types": "dist/index.d.ts",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "content-fingerprint": "f43b612241289e1b72a99b5952de378165e269b5"
 }
