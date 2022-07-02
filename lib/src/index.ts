@@ -1,4 +1,4 @@
-import { API } from "./api"
+import { API } from "pareto-async-api"
 import { array } from "./imp/array"
 import { createCache } from "./imp/cache"
 import { createCounter } from "./imp/createCounter"

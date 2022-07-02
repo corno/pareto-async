@@ -4,7 +4,7 @@ import * as api from "pareto-async-api"
 export function tuple2<T1, T2>(
     cb1: api.IAsync<T1>,
     cb2: api.IAsync<T2>,
-): api.IAsync<api.Tuple2<T1, T2>> {
+): api.IAsync<api.Tuple2Result<T1, T2>> {
     return {
         execute: (cb) => {
             let elem1IsSet = false
@@ -37,7 +37,7 @@ export function tuple3<T1, T2, T3>(
     cb1: api.IAsync<T1>,
     cb2: api.IAsync<T2>,
     cb3: api.IAsync<T3>,
-): api.IAsync<api.Tuple3<T1, T2, T3>> {
+): api.IAsync<api.Tuple3Result<T1, T2, T3>> {
     return {
         execute: (cb) => {
             let elem1IsSet = false
