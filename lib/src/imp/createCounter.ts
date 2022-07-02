@@ -1,10 +1,10 @@
 import * as api from "pareto-async-api"
 
-
-export function createCounter(
+function createCounterImp(
     callback: ($: api.ICounter) => void,
-    onEnd: () => void,
-): void {
+    onEnd: () => void
+) {
+
     let counter = 0
 
     /*
@@ -41,4 +41,10 @@ export function createCounter(
     })
     registrationPhaseEnded = true
     wrapup()
+}
+
+
+export function createCounter(
+): api.CreateCounter {
+    return createCounterImp
 }

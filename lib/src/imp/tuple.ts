@@ -1,7 +1,7 @@
 import * as api from "pareto-async-api"
 
 
-export function tuple2<T1, T2>(
+export function tuple2Imp<T1, T2>(
     cb1: api.IAsync<T1>,
     cb2: api.IAsync<T2>,
 ): api.IAsync<api.Tuple2Result<T1, T2>> {
@@ -33,7 +33,11 @@ export function tuple2<T1, T2>(
     }
 }
 
-export function tuple3<T1, T2, T3>(
+export function tuple2() {
+    return tuple2Imp
+}
+
+export function tuple3Imp<T1, T2, T3>(
     cb1: api.IAsync<T1>,
     cb2: api.IAsync<T2>,
     cb3: api.IAsync<T3>,
@@ -71,4 +75,8 @@ export function tuple3<T1, T2, T3>(
 
         }
     }
+}
+
+export function tuple3() {
+    return tuple3Imp
 }

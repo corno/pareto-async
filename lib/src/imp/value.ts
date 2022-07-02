@@ -1,7 +1,7 @@
 import * as api from "pareto-async-api"
 
 
-export function value<T>(
+export function valueImp<T>(
     v: T
 ): api.IAsync<T> {
     return {
@@ -9,4 +9,8 @@ export function value<T>(
             cb(v)
         }
     }
+}
+
+export function value() {
+    return valueImp
 }

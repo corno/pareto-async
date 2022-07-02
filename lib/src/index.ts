@@ -11,15 +11,17 @@ import { value } from "./imp/value"
 
 export * from "./imp/tuple"
 
-export const $: API = {
-    createCache: createCache,
-    createCounter: createCounter,
-    createDictionary: createDictionary,
-    dictionary: dictionary,
-    rawDictionary: rawDictionary,
-    array: array,
-    rewrite: rewrite,
-    value: value,
-    tuple2: tuple2,
-    tuple3: tuple3,
+export function init(): API {
+    return {
+        createCache: createCache,
+        createCounter: createCounter(),
+        createDictionary: createDictionary(),
+        dictionary: dictionary(),
+        rawDictionary: rawDictionary(),
+        array: array(),
+        rewrite: rewrite(),
+        value: value(),
+        tuple2: tuple2(),
+        tuple3: tuple3(),
+    }
 }

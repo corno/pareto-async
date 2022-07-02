@@ -1,7 +1,7 @@
 import * as api from "pareto-async-api"
 import * as pr from "pareto-runtime"
 
-export function createDictionary<T>(source: { [key: string]: T }): api.IDictionary<T> {
+export function createDictionaryImp<T>(source: { [key: string]: T }): api.IDictionary<T> {
     return {
         forEach: (cb) => {
             pr.Objectkeys(source).sort().forEach($ => {
@@ -13,7 +13,7 @@ export function createDictionary<T>(source: { [key: string]: T }): api.IDictiona
             pr.Objectkeys(source).forEach($ => {
                 target[$] = cb(source[$], $)
             })
-            return createDictionary(target)
+            return createDictionaryImp(target)
         },
         toArray: () => {
             return pr.Objectkeys(source).map($ => {
@@ -25,3 +25,8 @@ export function createDictionary<T>(source: { [key: string]: T }): api.IDictiona
         }
     }
 }
+
+export function createDictionary(): api.CreateDictionary {
+    return createDictionaryImp
+}
+

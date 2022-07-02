@@ -1,14 +1,14 @@
 import * as api from "pareto-async-api"
 import { createCounter } from "./createCounter"
-import { createDictionary } from "./createDictionary"
+import { createDictionaryImp } from "./createDictionary"
 
-export function dictionary<T>(
+export function dictionaryImp<T>(
     dictionary: api.IDictionary<api.IAsync<T>>,
 ): api.IAsync<api.IDictionary<T>> {
     return {
         execute: (cb) => {
             const temp: { [key: string]: T } = {}
-            createCounter(
+            createCounter()(
                 (counter) => {
                     dictionary.forEach((v, k) => {
                         counter.increment()
@@ -19,9 +19,14 @@ export function dictionary<T>(
                     })
                 },
                 () => {
-                    cb(createDictionary(temp))
+                    cb(createDictionaryImp(temp))
                 }
             )
         }
     }
+}
+
+export function dictionary() {
+    return dictionaryImp
+
 }
