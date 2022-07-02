@@ -4,7 +4,7 @@ import * as api from "pareto-async-api"
 export function createCounter(
     callback: ($: api.ICounter) => void,
     onEnd: () => void,
-) {
+): void {
     let counter = 0
 
     /*
