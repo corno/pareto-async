@@ -2,7 +2,7 @@
   "author": "Corno",
   "bin": {},
   "dependencies": {
-    "pareto-async-api": "^0.5.0",
+    "pareto-async-api": "^0.6.0",
     "pareto-lang-api": "^0.6.0",
     "pareto-lang-lib": "^0.8.0",
     "pareto-runtime": "^0.23.0"
@@ -26,5 +26,5 @@
   },
   "types": "dist/index.d.ts",
   "version": "0.7.0",
-  "content-fingerprint": "d80ef798bbca4e75b0cb05763807937ef35818aa"
+  "content-fingerprint": "a66243b5138cc58251e5b4b3b05cce0f8632fbbb"
 }
