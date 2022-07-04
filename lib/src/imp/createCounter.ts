@@ -1,10 +1,10 @@
 import * as api from "pareto-async-api"
 
 
-export declare type ICounter = {
-    readonly "increment": () => void;
-    readonly "decrement": () => void;
-};
+export type ICounter = {
+    readonly "increment": () => void
+    readonly "decrement": () => void
+}
 
 
 
