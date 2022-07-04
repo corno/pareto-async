@@ -8,7 +8,7 @@ export function array() {
         return {
             execute: (cb) => {
                 const temp: T[] = []
-                createCounter()(
+                createCounter(
                     (counter) => {
                         array.forEach((v) => {
                             counter.increment()

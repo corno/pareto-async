@@ -1,25 +1,27 @@
+import * as pa from "pareto-lang-api"
+import * as pl from "pareto-lang-lib"
 import * as api from "pareto-async-api"
 import { createCounter } from "./createCounter"
-import { createDictionaryImp } from "./createDictionary"
+import { createDictionary } from "pareto-lang-lib"
 
 export function dictionaryImp<T>(
-    dictionary: api.IDictionary<api.IAsync<T>>,
-): api.IAsync<api.IDictionary<T>> {
+    dictionary: pa.IReadonlyDictionary<api.IAsync<T>>,
+): api.IAsync<pa.IReadonlyDictionary<T>> {
     return {
         execute: (cb) => {
             const temp: { [key: string]: T } = {}
-            createCounter()(
+            createCounter(
                 (counter) => {
-                    dictionary.forEach((v, k) => {
+                    dictionary.toArray().forEach(($) => {
                         counter.increment()
-                        v.execute((v) => {
-                            temp[k] = v
+                        $.value.execute((v) => {
+                            temp[$.key] = v
                             counter.decrement()
                         })
                     })
                 },
                 () => {
-                    cb(createDictionaryImp(temp))
+                    cb(pl.createDictionary(temp))
                 }
             )
         }

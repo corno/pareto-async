@@ -1,7 +1,15 @@
 import * as api from "pareto-async-api"
 
-function createCounterImp(
-    callback: ($: api.ICounter) => void,
+
+export declare type ICounter = {
+    readonly "increment": () => void;
+    readonly "decrement": () => void;
+};
+
+
+
+export function createCounter(
+    callback: ($: ICounter) => void,
     onEnd: () => void
 ) {
 
@@ -41,10 +49,4 @@ function createCounterImp(
     })
     registrationPhaseEnded = true
     wrapup()
-}
-
-
-export function createCounter(
-): api.CreateCounter {
-    return createCounterImp
 }
