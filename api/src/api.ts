@@ -1,23 +1,17 @@
-import { IAsync, ICache, ICounter, IDictionary, Tuple2Result, Tuple3Result } from "./interface"
+import * as pa from "pareto-lang-api"
+import { IAsync, ICache, Tuple2Result, Tuple3Result } from "./interface"
 
 export type CreateCache = <T>(
     get: (key: string) => IAsync<T>
 ) => ICache<T>
 
-export type CreateCounter = (
-    callback: ($: ICounter) => void,
-    onEnd: () => void,
-) => void
-
-export type CreateDictionary = <T>(source: { [key: string]: T }) => IDictionary<T>
-
 export type Dictionary = <T>(
-    dictionary: IDictionary<IAsync<T>>,
-) => IAsync<IDictionary<T>>
+    dictionary: pa.IReadonlyDictionary<IAsync<T>>,
+) => IAsync<pa.IReadonlyDictionary<T>>
 
 export type RawDictionary = <T>(
     $: { [key: string]: IAsync<T> },
-) => IAsync<IDictionary<T>>
+) => IAsync<pa.IReadonlyDictionary<T>>
 
 export type Array = <T>(
     array: IAsync<T>[],
@@ -45,8 +39,6 @@ export type Tuple3 = <T1, T2, T3> (
 
 export type API = {
     createCache: CreateCache
-    createCounter: CreateCounter
-    createDictionary: CreateDictionary
     dictionary: Dictionary,
     rawDictionary: RawDictionary,
     array: Array,

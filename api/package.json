@@ -20,5 +20,8 @@
   },
   "types": "dist/index.d.ts",
   "version": "0.4.0",
-  "content-fingerprint": "d30a7b14c9eaeb139e1967a7643623f90ae41076"
+  "dependencies": {
+    "pareto-lang-api": "^0.6.0"
+  },
+  "content-fingerprint": "ab81cd423039a4dbbe6052c26f5a3d25149ef44a"
 }
