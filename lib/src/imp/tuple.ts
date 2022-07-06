@@ -1,10 +1,11 @@
 import * as api from "pareto-async-api"
 
 
-export function tuple2Imp<T1, T2>(
+export function tuple2Imp<T1, T2, Result>(
     cb1: api.IAsync<T1>,
     cb2: api.IAsync<T2>,
-): api.IAsync<api.Tuple2Result<T1, T2>> {
+    map: ($: api.Tuple2Result<T1, T2>) => Result,
+): api.IAsync<Result> {
     return {
         execute: (cb) => {
             let elem1IsSet = false
@@ -15,7 +16,7 @@ export function tuple2Imp<T1, T2>(
 
             function wrapup() {
                 if (elem1IsSet && elem2IsSet) {
-                    cb({ first: elem1, second: elem2 })
+                    cb(map({ first: elem1, second: elem2 }))
                 }
             }
             cb1.execute((val) => {
@@ -37,11 +38,12 @@ export function tuple2() {
     return tuple2Imp
 }
 
-export function tuple3Imp<T1, T2, T3>(
+export function tuple3Imp<T1, T2, T3, Result>(
     cb1: api.IAsync<T1>,
     cb2: api.IAsync<T2>,
     cb3: api.IAsync<T3>,
-): api.IAsync<api.Tuple3Result<T1, T2, T3>> {
+    map: ($: api.Tuple3Result<T1, T2, T3>) => Result,
+): api.IAsync<Result> {
     return {
         execute: (cb) => {
             let elem1IsSet = false
@@ -54,7 +56,7 @@ export function tuple3Imp<T1, T2, T3>(
 
             function wrapup() {
                 if (elem1IsSet && elem2IsSet && elem3IsSet) {
-                    cb({ first: elem1, second: elem2, third: elem3 })
+                    cb(map({ first: elem1, second: elem2, third: elem3 }))
                 }
             }
             cb1.execute((val) => {
