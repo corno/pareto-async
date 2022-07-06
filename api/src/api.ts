@@ -26,16 +26,18 @@ export type Value = <T>(
     v: T
 ) => IAsync<T>
 
-export type Tuple2 = <T1, T2>(
+export type Tuple2 = <T1, T2, Result>(
     cb1: IAsync<T1>,
     cb2: IAsync<T2>,
-) => IAsync<Tuple2Result<T1, T2>>
+    map: ($: Tuple2Result<T1, T2>) => Result,
+) => IAsync<Result>
 
-export type Tuple3 = <T1, T2, T3> (
+export type Tuple3 = <T1, T2, T3, Result> (
     cb1: IAsync<T1>,
     cb2: IAsync<T2>,
     cb3: IAsync<T3>,
-) => IAsync<Tuple3Result<T1, T2, T3>>
+    map: ($: Tuple3Result<T1, T2, T3>) => Result,
+) => IAsync<Result>
 
 export type API = {
     createCache: CreateCache
